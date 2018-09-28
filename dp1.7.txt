@@ -1,0 +1,25 @@
+class ArquivoLogger implements LoggerStrategy {
+	
+	private $arquivo;
+
+    public function __construct($server) {
+    	$this->arquivo = fopen("MEU_ARQUIVO_LOG.txt", "w") or die("Arquivo não encontrado!"); 
+    }
+
+    public function log($mensagem) {
+    	fwrite($this->arquivo, $mensagem);
+    }
+
+    public function erro($mensagem) {
+    	$mensagem = "ERRO : ".$mensagem
+        $this->log($mensagem);
+    }
+
+    public function info($mensagem) {
+    	$mensagem = "INFO : ".$mensagem
+        $this->log($mensagem);
+    }
+
+}
+
+?>

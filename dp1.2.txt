@@ -1,0 +1,51 @@
+<?php 
+
+$informacao = new Informacao();
+$informacao->autor = 'brunaleiras';
+$informacao->descricao = 'Teste descrição';
+
+$controller = Controller();
+$controller->gravar($informacao, new BancoDeDadosAdapter());
+$controller->gravar($informacao, new LogAdapter());
+
+class Controller {
+
+    public function gravar($informacao, GravacaoAdapter $adapter){
+
+        $adapter->gravar($informacao);
+    }
+}
+
+
+interface GravacaoAdapter {
+    public function send($msg);
+}
+
+class BancoDeDadosAdapter implements GravacaoAdapter {
+ 
+    private $bancoDeDados;
+ 
+    public function __construct() {
+        $this->bancoDeDados = new BancoDeDados();
+    }
+ 
+    public function gravar($informacao) {
+        $this->bancoDeDados->gravar($informacao);
+    }
+}
+
+
+class LogAdapter implements GravacaoAdapter {
+ 
+    private $log;
+ 
+    public function __construct() {
+        $this->log = new Log();
+    }
+ 
+    public function gravar($informacao) {
+        $this->log->gravar($informacao);
+    }
+}
+
+?>

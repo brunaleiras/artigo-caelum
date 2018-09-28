@@ -1,0 +1,25 @@
+class BancoDeDadosLogger implements LoggerStrategy {
+	
+	private $conexao;
+    
+    public function __construct($server) {
+    	$this->conexao = new MySQLi('HOST', 'USUARIO', 'SENHA', 'BANCO');  
+    }
+
+    public function log($mensagem) {
+    	$sql = "INSERT INTO LOG (log) VALUES (".$mensagem.")";
+    	$operacao = $this->conexao->prepare($sql);
+    	$operacao->execute()
+    }
+
+    public function erro($mensagem) {
+    	$mensagem = "ERRO : ".$mensagem
+        $this->log($mensagem);
+    }
+
+    public function info($mensagem) {
+    	$mensagem = "INFO : ".$mensagem
+        $this->log($mensagem);
+    }
+
+}
