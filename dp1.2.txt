@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 
 $informacao = new Informacao();
 $informacao->autor = 'brunaleiras';
@@ -18,7 +18,7 @@ class Controller {
 
 
 interface GravacaoAdapter {
-    public function send($msg);
+    public function gravar($msg);
 }
 
 class BancoDeDadosAdapter implements GravacaoAdapter {
