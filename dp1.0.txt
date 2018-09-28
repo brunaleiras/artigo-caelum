@@ -1,0 +1,24 @@
+<?php
+ 
+class ConexaoMySQL {
+ 
+    public static $conexao;
+ 
+    private function __construct() {
+		//Evita que a classe seja instanciada como "new ConexaoMySQL()"
+    }
+ 
+	public static function getInstance() {
+		if (!isset(self::$conexao)) {
+			self::$conexao = new MySQLi('HOST', 'USUARIO', 'SENHA', 'BANCO');            
+			if($conexao->connect_error){
+				exit("Erro de conexão: ".$conexao->connect_error)
+			}
+		}
+
+		return self::$conexao;
+	}
+ 
+}
+ 
+?>

@@ -1,0 +1,6 @@
+interface LoggerStrategy {
+
+    public function log($mensagem);
+    public function erro($mensagem);
+    public function info($mensagem);
+}
