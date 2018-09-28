@@ -8,8 +8,8 @@ class Logger {
         $this->logger->log($mensagem);
     }
 
-    public function error($mensagem) {
-        $this->logger->error($mensagem);
+    public function erro($mensagem) {
+        $this->logger->erro($mensagem);
     }
 
     public function info($mensagem) {
